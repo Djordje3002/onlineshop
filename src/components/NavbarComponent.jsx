@@ -1,3 +1,4 @@
+import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/clerk-react";
 import { FaUser } from "react-icons/fa";
 import { FaRegHeart } from "react-icons/fa";
 import { FaCartShopping } from "react-icons/fa6";
@@ -18,7 +19,14 @@ function NavbarComponent() {
         <div className="flex items-center gap-4 text-white">
             <div className="flex items-center gap-2">
                 <FaUser size={20} />
-                <span className="cursor-pointer">Login</span>
+                
+                <SignedOut>
+                <SignInButton />
+                </SignedOut>
+                <SignedIn>
+                <UserButton showName className="text-white" style={{color: "white"}}  />
+                </SignedIn>
+
             </div>
             <div className="flex items-center gap-2">
                 <FaRegHeart size={20} />

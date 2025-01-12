@@ -18,9 +18,6 @@ function AppLayout() {
     <NavbarComponent />
     <CategoryComponent />
 
-     <h1>RADI</h1>
-
-
      <Outlet />
     </>
   )
