@@ -10,7 +10,8 @@ import store from './store/store.js';
 
 import { Provider } from 'react-redux';
 import { ClerkProvider } from '@clerk/clerk-react'
-
+import SingleProductPage from './pages/SingleProductPage.jsx';
+import ErrorPage from './utils/ErrorPage.jsx';
 // Import your Publishable Key
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY
 
@@ -22,12 +23,16 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: <AppLayout />,
-    errorElement: <div>404</div>,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: '/', // Matches the base route
         element: <HomePage />,
       },
+      {
+        path: '/singleProduct/:id',
+        element: <SingleProductPage />
+      }
     ], 
   },
 ]);

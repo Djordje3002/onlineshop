@@ -44,7 +44,7 @@ function CategoryComponent() {
             </ul>
           )
         ) : (
-            <LoadingPage /> // Show loading page while fetching
+            <LoadingPage className="w-full" /> // Show loading page while fetching
         )}
       </div>
     </div>

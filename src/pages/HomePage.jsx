@@ -29,7 +29,7 @@ function HomePage() {
         )}
       </div>
       ) : (
-        <LoadingPage />
+        <LoadingPage className="w-full h-full" />
       )}
     </div>
   );

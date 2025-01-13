@@ -2,12 +2,13 @@ import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/clerk-reac
 import { FaUser } from "react-icons/fa";
 import { FaRegHeart } from "react-icons/fa";
 import { FaCartShopping } from "react-icons/fa6";
+import { Link } from "react-router-dom";
 
 function NavbarComponent() {
   return (
     <div className="bg-primaryColor">
       <div className="container mx-auto h-auto gap-2 flex justify-between items-center py-1 lg:py-4 flex-col lg:flex-row">
-        <h2 className="text-2xl font-bold text-white">CoolShop</h2>
+        <Link to={'/'} className="text-2xl font-bold text-white">CoolShop</Link>
 
         {/*SEARCH BAR*/}
         <div className="bg-white rounded-[20px]">
