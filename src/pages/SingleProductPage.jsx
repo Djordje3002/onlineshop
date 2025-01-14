@@ -7,12 +7,16 @@ import { FaCheck } from "react-icons/fa";
 import { IoClose } from "react-icons/io5";
 import { FaRegHeart } from "react-icons/fa";
 import { IoCartOutline } from "react-icons/io5";
+import { useDispatch } from 'react-redux';
+import {Link} from 'react-router-dom';  
 
 function SingleProductPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [singleProduct, setSingleProduct] = useState({});
   const [currentImg, setCurrentImg] = useState(0);
   const [countProduct, setCountProduct] = useState(1);
+
+  const dispatch = useDispatch();
 
   const { id } = useParams();
 
@@ -35,10 +39,14 @@ function SingleProductPage() {
         setIsLoading(false);
       });
   }, [id]);
-  
 
+  function handleProductCart() {
+    dispatch(SaveInCartAction(singleProduct));
+  }
+  
+  
   return (
-    <div className="flex justify-center m-[1rem]">
+    <div className="flex justify-center m-[3rem]">
       {isLoading ? (
           <>
           <div className="flex flex-col lg:flex-row">
@@ -122,9 +130,11 @@ function SingleProductPage() {
 
 
                   <div className='flex flex-row items-center gap-3'>
-                  <button className="bg-secondaryColor text-white py-2 px-4 rounded-md">Add to Cart</button>
+
+                  <Link to={'/cart'} onClick={handleProductCart} className="bg-secondaryColor text-white py-2 px-4 rounded-md">Add to Cart</Link>
+
                     <div className='bg-gray-300 text-white py-2 px-4 rounded-full w-[40px] h-[40px] flex items-center justify-center'>
-                       <FaRegHeart size={30} />
+                       <FaRegHeart size={36} />
                     </div>
                   </div>
 
