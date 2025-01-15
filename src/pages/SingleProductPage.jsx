@@ -8,6 +8,7 @@ import { IoClose } from "react-icons/io5";
 import { FaRegHeart } from "react-icons/fa";
 import { IoCartOutline } from "react-icons/io5";
 import { useDispatch } from 'react-redux';
+import { SaveInCartAction } from '../store/CartSlice'; // Add this line
 import {Link} from 'react-router-dom';  
 
 function SingleProductPage() {
@@ -40,6 +41,7 @@ function SingleProductPage() {
       });
   }, [id]);
 
+  // Function to handle add to cart
   function handleProductCart() {
     dispatch(SaveInCartAction(singleProduct));
   }

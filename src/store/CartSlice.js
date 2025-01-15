@@ -5,18 +5,11 @@ const cartSlice = createSlice({
     name: 'cart',
     initialState: {
         cart: [],
-        totalProduct: 0,
+        totalProduct: 1,
         totalPrice: 0, // We'll also store the total price of all products in the cart
     },
     reducers: {
-        /**
-         * Action to add an item to the cart.
-         * If the item is not already in the cart, it adds a new item with count = 1 and cartTotal = price.
-         * If the item is already in the cart, it increments the count and adds the price to the cartTotal.
-         * 
-         * @param {import("@reduxjs/toolkit").PayloadAction<{id: number, price: number}>} action The action payload containing the item id and price.
-         */
-        SaveInCartAction: (state, action) => {
+        SaveInCartAction: (state, action) => { 
             console.log("Action Payload:", action.payload);
             let copyCart = [...state.cart];
             const findIndex = copyCart.findIndex(item => item.id === action.payload.id);
