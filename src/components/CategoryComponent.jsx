@@ -1,27 +1,23 @@
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import CategoryService from "../services/CategoryService";
-import { saveAllCategoryAction } from "../store/categorySlice";
 import LoadingPage from "../utils/LoadingPage";
 
 function CategoryComponent() {
-  const [toggleCategory, setToggleCategory] = useState(false); // Toggles category display
-  const { allCategory, isLoading } = useSelector((state) => state.categoryStore); // Access Redux state
-
-  const dispatch = useDispatch();
+  const [toggleCategory, setToggleCategory] = useState(false);
+  const [allCategory, setAllCategory] = useState([]); // Initialize as an empty array
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Fetch categories and dispatch to Redux
-    dispatch({ type: "category/setLoading", payload: true }); // Set loading to true
+    setIsLoading(true); // Start loading
     CategoryService.getAllCategory()
       .then((response) => {
-        dispatch(saveAllCategoryAction(response.data));
+        setAllCategory(response.data); // Set local state
       })
       .catch((err) => console.error(err))
       .finally(() => {
-        dispatch({ type: "category/setLoading", payload: false }); // Set loading to false
+        setIsLoading(false);  
       });
-  }, [dispatch]);
+  }, []);
 
   return (
     <div className="bg-gray-300 h-auto w-full flex flex-col justify-center items-center pt-4">
@@ -34,17 +30,25 @@ function CategoryComponent() {
         </button>
 
         {isLoading ? (
-          toggleCategory && (
-            <ul className="bg-white shadow rounded p-4 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-6 gap-4">
-              {allCategory.map((category, index) => (
-                <li key={index} className="text-white bg-primaryColor hover:bg-secondaryColor transiotion duration-300 text-center  p-2 rounded">
-                  {category}
-                </li>
-              ))}
-            </ul>
-          )
+          <LoadingPage className="w-full" />
         ) : (
-            <LoadingPage className="w-full" /> // Show loading page while fetching
+          toggleCategory && (
+            <div  className="flex flex-col gap-2">
+              <ul className="grid grid-cols-2 gap-2 md:grid-cols-4 lg:grid-cols-6 2xl:grid-cols-8">
+                {allCategory.length > 0 ? ( // Check if allCategory has elements
+                  allCategory.map((category, index) => (
+                    <li className="text-white bg-primaryColor hover:bg-secondaryColor transition duration-300 text-center p-2 rounded"
+                      key={index}
+                    >
+                      {category}
+                    </li>
+                  ))
+                ) : (
+                  <p>No categories available</p> // Fallback if no categories
+                )}
+              </ul>
+            </div>
+          )
         )}
       </div>
     </div>

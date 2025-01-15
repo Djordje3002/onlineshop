@@ -1,7 +1,7 @@
 import { useEffect } from "react"
 import ProductService from "../services/ProductService"
 import { useDispatch } from "react-redux"
-import { saveAllProductsAction } from "../store/productSlice"
+import { saveAllProductsAction } from "../store/ProductSlice"
 import { useSelector } from "react-redux"
 import LoadingPage from "../utils/LoadingPage";
 import CardComponent from "../components/CardComponent";
