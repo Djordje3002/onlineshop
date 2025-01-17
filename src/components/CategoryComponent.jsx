@@ -1,11 +1,15 @@
 import { useEffect, useState } from "react";
 import CategoryService from "../services/CategoryService";
 import LoadingPage from "../utils/LoadingPage";
+import { saveSelectCategoryAction } from "../store/ProductSlice";
+import { useDispatch } from "react-redux";
 
 function CategoryComponent() {
   const [toggleCategory, setToggleCategory] = useState(false);
   const [allCategory, setAllCategory] = useState([]); // Initialize as an empty array
   const [isLoading, setIsLoading] = useState(true);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     setIsLoading(true); // Start loading
@@ -35,10 +39,17 @@ function CategoryComponent() {
           toggleCategory && (
             <div  className="flex flex-col gap-2">
               <ul className="grid grid-cols-2 gap-2 md:grid-cols-4 lg:grid-cols-6 2xl:grid-cols-8">
+                <li className="text-white bg-primaryColor hover:bg-secondaryColor transition duration-300 text-center p-2 rounded cursor-pointer"
+                  onClick={() => dispatch(saveSelectCategoryAction(''))}
+                  >
+                  All Cetgory
+                </li>
                 {allCategory.length > 0 ? ( // Check if allCategory has elements
                   allCategory.map((category, index) => (
-                    <li className="text-white bg-primaryColor hover:bg-secondaryColor transition duration-300 text-center p-2 rounded"
+
+                    <li className="text-white bg-primaryColor hover:bg-secondaryColor transition duration-300 text-center p-2 rounded cursor-pointer"
                       key={index}
+                      onClick={() => dispatch(saveSelectCategoryAction(category))}
                     >
                       {category}
                     </li>

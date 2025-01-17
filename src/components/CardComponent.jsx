@@ -2,9 +2,10 @@
 import { Rating } from '@mui/material'
 import { Link } from 'react-router-dom';
 
-function CardComponent({ product }) {
+function CardComponent({ product , isGrid}) {
     return (
-          <div className="max-w-xs bg-white border border-gray-200 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
+          <div className={isGrid ? 'max-w-xs bg-white border border-gray-200 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300' : 'w-full flex items-center border border-gray-400 justify-between px-[10px] '} 
+            >
             <img
               className="w-full h-48 object-cover"
               src={product.thumbnail}

@@ -8,6 +8,7 @@ function HeaderComponent({setActiveHeader}) {
     return (
     <div className="flex justify-between items-center container mx-auto h-auto flex-col lg:flex-row py-3 ">
       <p>Need help? Call us on <a className="font-bold" href="tel:3812469538">381-246-9538</a></p>
+      <p>Apply coupon Djordje for 10% discount</p>
 
       <div className="flex items-center gap-4">
         <div className="flex items-center gap-2 mr-4 lg:gap-4">
