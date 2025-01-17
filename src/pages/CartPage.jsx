@@ -1,6 +1,6 @@
-import React from 'react';
+
 import { useSelector, useDispatch } from 'react-redux';
-import { SaveInCartAction, removeItemFromCart, decreaseItemQuantity } from '../store/CartSlice'; // Adjust path
+import { SaveInCartAction, removeItemFromCart, decreaseItemQuantity, clearCart } from '../store/CartSlice'; // Adjust path
 import { Link } from 'react-router-dom';
 
 function CartPage() {
@@ -21,6 +21,10 @@ function CartPage() {
 
     const handleDecreaseQuantity = (product) => {
         dispatch(decreaseItemQuantity(product));
+    };
+
+    const handleClearCart = () => {
+        dispatch(clearCart());
     };
 
     return (
@@ -69,7 +73,7 @@ function CartPage() {
                     <Link to='/' className='border border-gray-300 px-6  mt-6 m-3 text-gray-700 p-2 rounded-full font-semibold '>
                         Update Cart
                    </Link>
-                    <button className='border border-red-500 px-6  m-3 mt-6 text-red-500 p-2 rounded-full font-semibold '>
+                    <button  onClick={handleClearCart} className='border border-red-500 px-6  m-3 mt-6 text-red-500 p-2 rounded-full font-semibold '>
                         Clear Cart
                   </button>
                     </div>  
@@ -86,8 +90,8 @@ function CartPage() {
                                 <p >Total Items: <span className="font-bold">{totalProduct}</span></p>
                                 <p className="font-bold py-4">Total Price: ${totalPrice.toFixed(2)}</p>
                             </div>
-                            <div className='flex flex-row bg-gray-200' >
-                                <input type="text" placeholder='Enter coupon code' />
+                            <div className='flex justify-between flex-row bg-gray-200' >
+                                <input type="text" className='w-full' placeholder='Enter coupon code' />
                                 <button className='bg-secondaryColor rounded-lg px-4 py-2'>Apply</button>
                             </div>
                             <button className="bg-secondaryColor mt-6 text-white p-2 rounded-full font-semibold w-full hover:bg-orange-500 transition">Proceed to Checkout</button>

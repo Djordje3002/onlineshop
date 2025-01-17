@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import ProductService from '../services/ProductService';
@@ -5,7 +6,6 @@ import LoadingPage from '../utils/LoadingPage';
 import {Rating} from '@mui/material';
 import { FaCheck } from "react-icons/fa";
 import { IoClose } from "react-icons/io5";
-import { FaRegHeart } from "react-icons/fa";
 import { IoCartOutline } from "react-icons/io5";
 import { useDispatch } from 'react-redux';
 import { SaveInCartAction } from '../store/CartSlice'; // Add this line
@@ -135,9 +135,6 @@ function SingleProductPage() {
 
                   <Link to={'/cart'} onClick={handleProductCart} className="bg-secondaryColor text-white py-2 px-4 rounded-md">Add to Cart</Link>
 
-                    <div className='bg-gray-300 text-white py-2 px-4 rounded-full w-[40px] h-[40px] flex items-center justify-center'>
-                       <FaRegHeart size={36} />
-                    </div>
                   </div>
 
                    <div className='h-[2px] w-[100%] bg-gray-300 my-3'></div>                
